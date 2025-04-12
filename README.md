@@ -70,8 +70,16 @@ linux-helper/
 
 ---
 
-## ✨ Getting Started (coming soon)
+## ✨ Getting Started
 
+Before running the tool, make sure Python 3 is installed.
+
+Then install required dependencies:
+```bash
+pip install rapidfuzz
+```
+
+To run the assistant:
 ```bash
 pip install linux-helper
 linux-helper
