@@ -1,0 +1,22 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+
+# Build and Distribution
+build/
+dist/
+*.egg-info/
+
+# Local configuration & Database
+.env
+src/linux_helper/assets/commands.json
+
+# Operating System files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,363 @@
+# File and Directory Management
+ls : List directory contents (names only).
+ls -l : List files in long format (permissions, ownership, size, date).
+ls -a : List all files including hidden files (starting with dot).
+ls -la : List all files (including hidden) in long format.
+ls -lh : List files with sizes in human-readable format (KB, MB, GB).
+ls -R : List directory contents recursively.
+cd : Change current directory.
+cd .. : Move up one directory level.
+cd ~ : Switch to the home directory.
+cd - : Switch to the previous directory.
+pwd : Print the absolute path of the current working directory.
+mkdir : Create a new directory (folder).
+mkdir -p : Create nested directories (e.g., mkdir -p dir1/dir2).
+rmdir : Remove an empty directory.
+rm : Remove a file.
+rm -f : Force remove a file without confirmation prompts.
+rm -r : Remove a directory and its contents recursively.
+rm -rf : Force remove a directory and its contents recursively (Dangerous).
+touch : Create an empty file or update file timestamps.
+cp : Copy a file.
+cp -r : Copy a directory recursively.
+mv : Move a file or directory.
+mv : Rename a file or directory (when destination is same path).
+cat : Display file content on screen.
+cat > : Create a new file from standard input (Ctrl+D to save).
+less : View large file contents page by page (allows backward navigation).
+more : View file contents one screen at a time (legacy).
+head : Output the first 10 lines of a file.
+head -n : Output the first N lines of a file (e.g., head -n 20 file).
+tail : Output the last 10 lines of a file.
+tail -f : Output appended data as the file grows (great for monitoring logs).
+find : Search for files in a directory hierarchy.
+find . -name "*.txt" : Find all text files in current directory.
+find . -size +100M : Find files larger than 100MB.
+locate : Find files by name using a prebuilt database (instant search).
+which : Locate the executable path of a command.
+whereis : Locate the binary, source, and manual page files for a command.
+ln -s : Create a symbolic link (shortcut) to a file or directory.
+ln : Create hard or symbolic links.
+chmod : Change file mode bits (permissions).
+chmod +x : Make a file executable.
+chmod 755 : Set permissions to rwxr-xr-x (Owner: full, Group/Others: read+exec).
+chmod 777 : Give full permissions to everyone (Dangerous).
+chown : Change file owner.
+chown user:group : Change file owner and group simultaneously.
+chgrp : Change group ownership of files.
+umask : Set file mode creation mask (default permissions).
+du : Estimate file space usage.
+du -sh : Show summary of directory size in human-readable format.
+df : Report file system disk space usage in 1K-blocks.
+df -h : Report file system disk space usage in human-readable format (GB, MB).
+df -T : Show file system type along with usage.
+tar : Archive utility to create and extract .tar files.
+tar -cvf : Create a new uncompressed tar archive.
+tar -xvf : Extract a tar archive.
+tar -czvf : Create a compressed gzip archive (.tar.gz).
+tar -xzvf : Extract a compressed gzip archive (.tar.gz).
+gzip : Compress files using Lempel-Ziv coding.
+gunzip : Decompress files created by gzip.
+zip : Create a zip archive.
+zip -r : Zip a directory recursively.
+unzip : Extract a zip archive.
+file : Determine file type description.
+stat : Display file or file system status.
+tree : List contents of directories in a tree-like format.
+basename : Strip directory and suffix from filenames.
+dirname : Strip last component from file name.
+realpath : Print the resolved absolute path.
+wc : Print newline, word, and byte counts for each file.
+wc -l : Count the number of lines in a file.
+split : Split a large file into smaller parts.
+shred : Securely delete a file by overwriting.
+truncate : Shrink or extend the size of a file.
+chattr : Change file attributes (e.g., make immutable: chattr +i file).
+lsattr : List file attributes set with chattr.
+
+# Text Processing
+grep : Print lines matching a pattern.
+grep -i : Search for a text string case-insensitively.
+grep -r : Search recursively for text inside all files in a directory.
+grep -v : Invert match (show lines that do NOT match the pattern).
+egrep : Extended grep for complex regex patterns.
+fgrep : Fixed string matching (fastest for literal strings).
+awk : Pattern scanning and text processing language.
+awk '{print $1}' : Print the first column of text.
+sed : Stream editor for filtering and transforming text.
+sed 's/old/new/g' : Replace all occurrences of 'old' with 'new' in stream.
+sort : Sort lines of text files.
+sort -n : Sort lines numerically.
+sort -r : Sort lines in reverse order.
+uniq : Remove adjacent duplicate lines.
+diff : Compare files line by line.
+comm : Compare two sorted files line by line.
+cmp : Compare two files byte by byte.
+patch : Apply a diff file to an original.
+cut : Remove sections from each line of files.
+cut -d : Extract sections from each line of files based on delimiter.
+tee : Write output to both standard output and a file.
+tr : Translate or delete characters.
+xargs : Build and execute command lines from standard input.
+strings : Print the sequences of printable characters in files.
+fold : Wrap each input line to fit in specified width.
+paste : Merge lines of files.
+join : Join lines of two files on a common field.
+rev : Reverse lines of a file or string.
+history : Display the command history list.
+history -c : Clear the command history.
+
+# System Administration
+sudo : Execute a command as another user (usually root).
+su : Change user ID or become superuser.
+useradd : Create a new user account.
+useradd -m : Create a new user with a home directory.
+userdel : Delete a user account.
+userdel -r : Delete a user account and their home directory.
+usermod : Modify a user account.
+groupadd : Create a new group.
+groupdel : Delete a group.
+passwd : Change user password.
+passwd username : Change the password for a specific user (requires root).
+chage : Change password aging and expiration.
+shutdown : Bring the system down.
+shutdown now : Shutdown the system immediately.
+shutdown -r now : Reboot the system immediately.
+reboot : Reboot the system.
+halt : Stop the system.
+poweroff : Power off the system.
+sync : Flush filesystem buffers.
+uptime : Tell how long the system has been running.
+dmesg : Print or control the kernel ring buffer.
+journalctl : Query the systemd journal logs.
+journalctl -xe : Show detailed system logs (useful for debugging errors).
+journalctl -f : Follow system logs in real time.
+systemctl : Control the systemd system and service manager.
+systemctl start : Start a service.
+systemctl stop : Stop a service.
+systemctl restart : Restart a service.
+systemctl status : Check the status of a service.
+systemctl enable : Enable a service to start automatically at boot.
+systemd-analyze : Analyze system boot performance.
+service : Run a System V init script.
+uname : Print system information.
+uname -a : Print all system information (kernel, architecture, hostname).
+hostname : Show or set the system's host name.
+hostnamectl : Control the system hostname.
+timedatectl : Control the system time and date.
+loginctl : Inspect and control login sessions.
+alias : Create an alias for a command.
+unalias : Remove an alias.
+export : Set an environment variable.
+env : Run a program in a modified environment.
+printenv : Print all or part of environment variables.
+lsof : List open files and the processes using them.
+lsof -i : List open network connections.
+mount : Mount a filesystem.
+umount : Unmount a filesystem.
+lsblk : List information about all available block devices.
+blkid : Locate/print block device attributes (UUID).
+fdisk : Manipulate disk partition table.
+fdisk -l : List partition tables for all disks.
+parted : A partition manipulation program.
+partx : Inform kernel about partition table changes.
+mkfs : Build a Linux filesystem.
+fsck : Check and repair a Linux filesystem.
+swapoff : Disable devices and files for paging and swapping.
+swapon : Enable devices and files for paging and swapping.
+crontab : Maintain crontab files for individual users.
+at : Queue, examine or delete jobs for later execution.
+visudo : Safely edit the sudoers file.
+who : List logged-in users.
+w : Show who is logged in and what they are doing.
+whoami : Show the current logged-in username.
+id : Display user and group IDs.
+last : Show recent logins and system reboots.
+lastb : Show failed login attempts.
+ac : Display user login accounting.
+wall : Send a message to all logged-in users.
+script : Record terminal session.
+
+# Process Management
+ps : Report a snapshot of the current processes.
+ps aux : Show all running processes with detailed info.
+top : Display Linux processes (dynamic real-time view).
+htop : Interactive process viewer.
+kill : Terminate a process by PID.
+kill -9 : Forcefully kill a process (SIGKILL).
+killall : Kill processes by name.
+pkill : Signal processes based on name and other attributes.
+pgrep : Look up or signal processes based on name.
+nice : Run a program with modified scheduling priority.
+renice : Alter priority of running processes.
+bg : Move a job to the background.
+fg : Move a job to the foreground.
+jobs : List active jobs.
+nohup : Run a command immune to hangups.
+watch : Execute a program periodically.
+strace : Trace system calls and signals.
+ltrace : A library call tracer.
+vmstat : Report virtual memory statistics.
+iostat : Report CPU and I/O statistics.
+free : Display amount of free and used memory in the system.
+free -h : Display memory usage in human-readable units.
+pmap : Report memory map of a process.
+pstree : Display processes in a tree hierarchy.
+sar : Collect and report system activity.
+glances : Monitor system performance in real time (rich UI).
+nmon : Interactive tool for monitoring CPU, memory, disk, and network.
+pidstat : Monitor per-process resource usage.
+mpstat : Report CPU usage per processor or core.
+cgexec : Run a command in a specific control group.
+
+# Networking
+ping : Send ICMP ECHO_REQUEST to network hosts.
+ping -c 4 : Send only 4 ping packets and stop.
+ip : Show / manipulate routing, network devices, interfaces.
+ip addr : Show IP addresses assigned to all network interfaces.
+ip link : Show status of network interfaces.
+ip route : Show the routing table.
+ifconfig : Configure a network interface (legacy).
+netstat : Print network connections, routing tables.
+netstat -tuln : Show listening TCP and UDP ports and sockets.
+ss : Another utility to investigate sockets.
+ss -tuln : Show listening ports (modern replacement for netstat).
+traceroute : Print the route packets take to network host.
+tracepath : Traces path to a network host discovering MTU.
+mtr : Network diagnostic tool combining ping and traceroute.
+nslookup : Query Internet name servers interactively.
+dig : DNS lookup utility.
+dig +short : Get just the IP address from DNS lookup.
+host : DNS lookup utility.
+whois : Retrieve domain registration info.
+resolvectl : Query DNS resolver status and configuration.
+wget : The non-interactive network downloader.
+wget -c : Resume an interrupted download.
+curl : Transfer data from or to a server.
+curl -I : Fetch HTTP headers only.
+ssh : OpenSSH remote login client.
+ssh -p : Connect to SSH on a specific port.
+scp : Secure copy (remote file copy program).
+scp -r : Securely copy directories recursively.
+rsync : Fast, versatile, remote (and local) file-copying tool.
+rsync -av : Synchronize files/directories (archive mode, verbose).
+nc : Netcat - Arbitrary TCP and UDP connections and listens.
+nc -l : Listen on a specific port (Netcat).
+nc -vz : Scan for open ports on a host.
+telnet : User interface to the TELNET protocol.
+tcpdump : Dump traffic on a network.
+arp : Manipulate the system ARP cache.
+route : Show / manipulate the IP routing table.
+ethtool : Query or control network driver and hardware settings.
+iwconfig : Configure a wireless network interface.
+nmcli : Command-line tool for controlling NetworkManager.
+ifplugstatus : Check the physical link status of Ethernet devices.
+iftop : Display real-time network bandwidth usage per connection.
+nload : Monitor incoming and outgoing network traffic graphically.
+nethogs : View bandwidth usage per process.
+vnstat : Track network traffic history.
+bmon : Bandwidth monitor with graphical statistics.
+iperf : Measure network bandwidth and performance between hosts.
+speedtest-cli : Test internet speed from the terminal.
+python3 : Quickly start a local HTTP server.
+
+# Security & Kali Linux Essentials
+nmap : Network exploration tool and security / port scanner.
+nmap -sV : Scan ports and detect service versions.
+nmap -O : Scan to detect operating system.
+nmap -sn : Ping scan (host discovery only, no port scan).
+hydra : A very fast network logon cracker.
+john : John the Ripper, a powerful password cracker.
+hashcat : Advanced password recovery utility.
+sqlmap : Automatic SQL injection and database takeover tool.
+burpsuite : Platform for performing security testing of web applications.
+metasploit : Penetration testing framework console.
+airmon-ng : Enable monitor mode on wireless interfaces.
+airodump-ng : Capture raw 802.11 frames.
+aireplay-ng : Inject frames into a wireless network.
+nikto : Web server scanner.
+dirb : Web content scanner (directory brute-forcing).
+gobuster : Directory/File, DNS and VHost busting tool.
+wpscan : WordPress security scanner.
+ncat : Concatenate and redirect sockets.
+netcat : Networking utility which reads and writes data.
+wireshark : Interactively dump and analyze network traffic.
+tshark : Dump and analyze network traffic (terminal version).
+volatility : Advanced memory forensics framework.
+binwalk : Firmware analysis tool.
+radare2 : Advanced command-line hexadecimal editor and debugger.
+ghidra : Software reverse engineering suite.
+steghide : Hide data in various kinds of image- and audio-files.
+gpg : GNU Privacy Guard (encryption and signing).
+gpg -c : Encrypt a file symmetrically.
+gpg -d : Decrypt a file.
+fail2ban-client : Configure and analyze Fail2Ban.
+chkrootkit : Check for signs of a rootkit.
+rkhunter : Rootkit Hunter.
+ufw : Program for managing a netfilter firewall.
+ufw enable : Enable UFW firewall.
+iptables : Administration tool for IPv4 packet filtering.
+apparmor_status : View current AppArmor policy status.
+sestatus : SELinux status tool.
+getenforce : View SELinux enforcement.
+setenforce : Change SELinux enforcement.
+fuser : Identify processes using a file or socket.
+mknod : Create device files manually.
+macchanger -r : Randomize MAC address.
+
+# Development & Scripting
+python3 : An interpreted, interactive, object-oriented programming language.
+pip : The package installer for Python.
+git : The stupid content tracker (version control).
+docker : A self-sufficient runtime for containers.
+gcc : GNU project C and C++ compiler.
+make : GNU make utility to maintain groups of programs.
+cmake : Cross-Platform Makefile Generator.
+npm : Node.js package manager.
+node : Server-side JavaScript runtime.
+jq : Command-line JSON processor.
+yq : Command-line YAML processor.
+perl : The Perl 5 language interpreter.
+ruby : Interpreted object-oriented scripting language.
+go : The Go programming language compiler.
+rustc : The Rust compiler.
+cargo : The Rust package manager.
+vim : Vi IMproved, a programmer's text editor.
+nano : Nano's ANOther editor, an enhanced free Pico clone.
+emacs : GNU Emacs editor.
+
+# Package Management
+apt : Install packages on Debian/Ubuntu.
+apt-get : Low-level package management.
+apt-cache : Search for packages.
+yum : Package manager for RHEL/CentOS.
+dnf : Modern replacement for yum (Fedora).
+rpm : Manage RPM packages.
+dpkg : Manage .deb packages.
+
+# Miscellaneous & Fun
+clear : Clear the terminal screen.
+reset : Reset the terminal.
+date : Print or set the system date and time.
+cal : Display a calendar.
+bc : An arbitrary precision calculator language.
+expr : Evaluate expressions.
+seq : Print a sequence of numbers.
+yes : Output a string repeatedly until killed.
+echo : Display a line of text.
+printf : Format and print data.
+man : An interface to the system reference manuals.
+info : Read Info documents.
+whatis : Display one-line manual page descriptions.
+apropos : Search the manual page names and descriptions.
+exit : Cause the shell to exit.
+logout : Close a login shell.
+sl : Steam Locomotive (joke command).
+cowsay : Configurable speaking/thinking cow (joke command).
+fortune : Print a random, hopefully interesting, adage.
+banner : Print large banner on printer.
+figlet : Display a line of text in large letters.
+lolcat : Rainbow coloring for text.
+neofetch : A command-line system information tool.
+screen : Screen manager with VT100/ANSI terminal emulation.
+tmux : Terminal multiplexer.
