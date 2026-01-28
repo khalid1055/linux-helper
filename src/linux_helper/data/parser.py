@@ -72,13 +72,19 @@ def build_commands_database(
     """
     Parse the raw commands file and write the JSON database.
 
-    Returns a tuple of (path, unique_command_count).
+    Returns a tuple of (path, command_count) where command_count is the total
+    number of command entries written to the JSON file. This matches the
+    counting logic used by get_indexed_count().
     """
     db = parse_raw_commands(raw_path)
     target = output_path or commands_db_path()
     target.parent.mkdir(parents=True, exist_ok=True)
     with target.open("w", encoding="utf-8") as f:
         json.dump(db.model_dump(), f, indent=2, ensure_ascii=False)
-    unique_commands = {entry.command for entry in db.commands}
-    return target, len(unique_commands)
+
+    # Re-load from disk to ensure we count exactly what the rest of the app sees.
+    with target.open("r", encoding="utf-8") as f:
+        persisted = CommandsDB.model_validate(json.load(f))
+
+    return target, len(persisted.commands)
 

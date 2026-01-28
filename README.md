@@ -25,7 +25,7 @@ lh "show hidden files"
 
 ## ✨ Features
 
-- 🗄️ **340+ Commands** – Networking, security, system admin
+- 🗄️ **692 Commands** covering 593 unique commands    Networking, security, system admin.
 - 🔍 **Smart Search** – Fuzzy matching handles typos
 - 🛡️ **Safety Warnings** – Flags dangerous commands
 - 🎨 **Beautiful UI** – Clean, color-coded terminal output

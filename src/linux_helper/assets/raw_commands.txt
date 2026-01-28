@@ -1,214 +1,314 @@
 # File and Directory Management
-ls : List directory contents (names only).
-ls -l : List files in long format (permissions, ownership, size, date).
-ls -a : List all files including hidden files (starting with dot).
-ls -la : List all files (including hidden) in long format.
-ls -lh : List files with sizes in human-readable format (KB, MB, GB).
-ls -R : List directory contents recursively.
-cd : Change current directory.
-cd .. : Move up one directory level.
-cd ~ : Switch to the home directory.
-cd - : Switch to the previous directory.
-pwd : Print the absolute path of the current working directory.
-mkdir : Create a new directory (folder).
-mkdir -p : Create nested directories (e.g., mkdir -p dir1/dir2).
-rmdir : Remove an empty directory.
-rm : Remove a file.
-rm -f : Force remove a file without confirmation prompts.
-rm -r : Remove a directory and its contents recursively.
-rm -rf : Force remove a directory and its contents recursively (Dangerous).
-touch : Create an empty file or update file timestamps.
-cp : Copy a file.
-cp -r : Copy a directory recursively.
-mv : Move a file or directory.
-mv : Rename a file or directory (when destination is same path).
+basename : Strip directory and suffix from filenames.
 cat : Display file content on screen.
 cat > : Create a new file from standard input (Ctrl+D to save).
-less : View large file contents page by page (allows backward navigation).
-more : View file contents one screen at a time (legacy).
-head : Output the first 10 lines of a file.
-head -n : Output the first N lines of a file (e.g., head -n 20 file).
-tail : Output the last 10 lines of a file.
-tail -f : Output appended data as the file grows (great for monitoring logs).
-find : Search for files in a directory hierarchy.
-find . -name "*.txt" : Find all text files in current directory.
-find . -size +100M : Find files larger than 100MB.
-locate : Find files by name using a prebuilt database (instant search).
-which : Locate the executable path of a command.
-whereis : Locate the binary, source, and manual page files for a command.
-ln -s : Create a symbolic link (shortcut) to a file or directory.
-ln : Create hard or symbolic links.
+cat -n file1 : Number the lines in a specific file.
+cd : Change current directory.
+cd .. : Move up one directory level.
+cd - : Switch to the previous directory.
+cd ~ : Switch to the home directory.
+cd ~user1 : Go to a specific user's home directory.
 chmod : Change file mode bits (permissions).
 chmod +x : Make a file executable.
 chmod 755 : Set permissions to rwxr-xr-x (Owner: full, Group/Others: read+exec).
 chmod 777 : Give full permissions to everyone (Dangerous).
+chmod go-rwx directory1 : Remove read, write, and execute permissions for group and others on a directory.
+chgrp : Change group ownership of files.
 chown : Change file owner.
 chown user:group : Change file owner and group simultaneously.
-chgrp : Change group ownership of files.
-umask : Set file mode creation mask (default permissions).
-du : Estimate file space usage.
-du -sh : Show summary of directory size in human-readable format.
+chattr : Change file attributes (e.g., make immutable: chattr +i file).
+chattr +a file1 : Allow only appending to a file.
+chattr +c file1 : Enable automatic compression/decompression by the kernel.
+chattr +d file1 : Ensure the dump program ignores the file during backup.
+chattr +s file1 : Allow a file to be deleted securely.
+chattr +S file1 : Ensure modifications are written synchronously.
+chattr +u file1 : Allow recovering file content after deletion.
+cp : Copy a file.
+cp -r : Copy a directory recursively.
+cp dir/* . : Copy all files from a directory to the current working directory.
+cp -a /tmp/dir1 . : Copy a directory preserving attributes to the current directory.
+cp -a dir1 dir2 : Copy directory dir1 to dir2 preserving attributes.
 df : Report file system disk space usage in 1K-blocks.
 df -h : Report file system disk space usage in human-readable format (GB, MB).
 df -T : Show file system type along with usage.
+dirname : Strip last component from file name.
+du : Estimate file space usage.
+du -sh : Show summary of directory size in human-readable format.
+du -sk * | sort -rn : Show size of files and directories sorted by size.
+file : Determine file type description.
+find : Search for files in a directory hierarchy.
+find . -name "*.txt" : Find all text files in current directory.
+find . -size +100M : Find files larger than 100MB.
+find / -name file1 : Search for a file or directory named file1 starting from root.
+find / -user user1 : Find files or directories belonging to a specific user.
+find /home/user1 -name "*.bin" : Find files with .bin extension in a user's home directory.
+find /usr/bin -type f -atime +100 : Find executables not used in the last 100 days.
+find /usr/bin -type f -mtime -10 : Find files created or modified in the last 10 days.
+find / -name ".rpm" -exec chmod 755 '{}' \; : Find .rpm files and change their permissions.
+find / -xdev -name ".rpm" : Find .rpm files ignoring removable devices.
+gunzip : Decompress files created by gzip.
+gzip : Compress files using Lempel-Ziv coding.
+gzip -9 file1 : Compress a file with maximum compression.
+head : Output the first 10 lines of a file.
+head -n : Output the first N lines of a file (e.g., head -n 20 file).
+ln : Create hard or symbolic links.
+ln -s : Create a symbolic link (shortcut) to a file or directory.
+locate : Find files by name using a prebuilt database (instant search).
+locate "*.ps" : Search for files with .ps extension.
+ls : List directory contents (names only).
+ls -a : List all files including hidden files (starting with dot).
+ls -l : List files in long format (permissions, ownership, size, date).
+ls -la : List all files (including hidden) in long format.
+ls -lh : List files with sizes in human-readable format (KB, MB, GB).
+ls -R : List directory contents recursively.
+ls [0-9]* : List files and directories starting with numbers.
+lsattr : List file attributes set with chattr.
+lstree : Display files and directories in a tree format starting from root.
+mkdir : Create a new directory (folder).
+mkdir -p : Create nested directories (e.g., mkdir -p dir1/dir2).
+mkdir dir1 dir2 : Create multiple directories simultaneously.
+more : View file contents one screen at a time (legacy).
+pwd : Print the absolute path of the current working directory.
+realpath : Print the resolved absolute path.
+rm : Remove a file.
+rm -f : Force remove a file without confirmation prompts.
+rm -r : Remove a directory and its contents recursively.
+rm -rf : Force remove a directory and its contents recursively (Dangerous).
+rmdir : Remove an empty directory.
+shred : Securely delete a file by overwriting.
+split : Split a large file into smaller parts.
+stat : Display file or file system status.
 tar : Archive utility to create and extract .tar files.
 tar -cvf : Create a new uncompressed tar archive.
-tar -xvf : Extract a tar archive.
 tar -czvf : Create a compressed gzip archive (.tar.gz).
+tar -xvf : Extract a tar archive.
 tar -xzvf : Extract a compressed gzip archive (.tar.gz).
-gzip : Compress files using Lempel-Ziv coding.
-gunzip : Decompress files created by gzip.
-zip : Create a zip archive.
-zip -r : Zip a directory recursively.
-unzip : Extract a zip archive.
-file : Determine file type description.
-stat : Display file or file system status.
+tar -tf archive.tar : View contents of a tar archive.
+tar -cvfj archive.tar.bz2 dir1 : Create a bzip2 compressed tar archive.
+tar -xvfj archive.tar.bz2 : Extract a bzip2 compressed tar archive.
+touch : Create an empty file or update file timestamps.
+touch -t 0712250000 file1 : Modify the timestamp of a file or directory.
 tree : List contents of directories in a tree-like format.
-basename : Strip directory and suffix from filenames.
-dirname : Strip last component from file name.
-realpath : Print the resolved absolute path.
+truncate : Shrink or extend the size of a file.
+umask : Set file mode creation mask (default permissions).
+unzip : Extract a zip archive.
 wc : Print newline, word, and byte counts for each file.
 wc -l : Count the number of lines in a file.
-split : Split a large file into smaller parts.
-shred : Securely delete a file by overwriting.
-truncate : Shrink or extend the size of a file.
-chattr : Change file attributes (e.g., make immutable: chattr +i file).
-lsattr : List file attributes set with chattr.
+whereis : Locate the binary, source, and manual page files for a command.
+which : Locate the executable path of a command.
+zip : Create a zip archive.
+zip -r : Zip a directory recursively.
 
 # Text Processing
+awk : Pattern scanning and text processing language.
+awk '{print $1}' : Print the first column of text.
+cat example.txt | awk 'NR % 2 == 1' : Remove all even lines from a file.
+comm : Compare two sorted files line by line.
+comm -1 file1 file2 : Compare files and suppress lines unique to file1.
+comm -2 file1 file2 : Compare files and suppress lines unique to file2.
+comm -3 file1 file2 : Compare files and suppress lines that appear in both files.
+cmp : Compare two files byte by byte.
+cut : Remove sections from each line of files.
+cut -d : Extract sections from each line of files based on delimiter.
+diff : Compare files line by line.
+dos2unix filedos.txt fileunix.txt : Convert a text file from MSDOS to Unix format.
+echo a b c | awk '{print $1,$3}' : Display the first and third fields from input.
+egrep : Extended grep for complex regex patterns.
+fgrep : Fixed string matching (fastest for literal strings).
+fold : Wrap each input line to fit in specified width.
 grep : Print lines matching a pattern.
 grep -i : Search for a text string case-insensitively.
 grep -r : Search recursively for text inside all files in a directory.
 grep -v : Invert match (show lines that do NOT match the pattern).
-egrep : Extended grep for complex regex patterns.
-fgrep : Fixed string matching (fastest for literal strings).
-awk : Pattern scanning and text processing language.
-awk '{print $1}' : Print the first column of text.
+history : Display the command history list.
+history -c : Clear the command history.
+join : Join lines of two files on a common field.
+paste : Merge lines of files.
+paste -d '+' file1 file2 : Merge files into columns separated by '+'.
+patch : Apply a diff file to an original.
+recode ..HTML < page.txt > page.html : Convert a text file to HTML format.
+recode -l | more : List all available recode conversion formats.
+rev : Reverse lines of a file or string.
+sdiff file1 file2 : Interactively find differences and merge files.
 sed : Stream editor for filtering and transforming text.
 sed 's/old/new/g' : Replace all occurrences of 'old' with 'new' in stream.
+sed '/^$/d' example.txt : Delete all empty lines from a file.
+sed '/^#/d; /^$/d' example.txt : Delete comments and empty lines from a file.
+sed -e '1d' example.txt : Remove the first line from a file.
+sed -e 's/ *$//' example.txt : Remove trailing whitespace from each line.
+sed -e 's/00/0/g' example.txt : Replace multiple zeros with a single zero.
+sed -e 's/string1//g' example.txt : Remove a specific string from text.
+sed -n '/string1/p' : Display lines containing a specific string.
+sed -n '1,5p' example.txt : Print lines 1 to 5 from a file.
+sed -n '5p;5q' example.txt : Display line 5 of a file.
 sort : Sort lines of text files.
 sort -n : Sort lines numerically.
 sort -r : Sort lines in reverse order.
-uniq : Remove adjacent duplicate lines.
-diff : Compare files line by line.
-comm : Compare two sorted files line by line.
-cmp : Compare two files byte by byte.
-patch : Apply a diff file to an original.
-cut : Remove sections from each line of files.
-cut -d : Extract sections from each line of files based on delimiter.
+sort file1 file2 | uniq : Sort and remove duplicate lines from two files.
+sort file1 file2 | uniq -d : Sort and display only duplicate lines from two files.
+sort file1 file2 | uniq -u : Sort and display only unique lines from two files.
+strings : Print the sequences of printable characters in files.
 tee : Write output to both standard output and a file.
 tr : Translate or delete characters.
+uniq : Remove adjacent duplicate lines.
+unix2dos fileunix.txt filedos.txt : Convert a text file from Unix to MSDOS format.
 xargs : Build and execute command lines from standard input.
-strings : Print the sequences of printable characters in files.
-fold : Wrap each input line to fit in specified width.
-paste : Merge lines of files.
-join : Join lines of two files on a common field.
-rev : Reverse lines of a file or string.
-history : Display the command history list.
-history -c : Clear the command history.
 
 # System Administration
+ac : Display user login accounting.
+alias : Create an alias for a command.
+arch : Display machine architecture.
+at : Queue, examine or delete jobs for later execution.
+blkid : Locate/print block device attributes (UUID).
+cat /proc/cpuinfo : Display CPU information.
+cat /proc/interrupts : Display I/O interrupts.
+cat /proc/meminfo : Check memory usage.
+cat /proc/mounts : Show mounted file systems from /proc.
+cat /proc/net/dev : Display network adapters and statistics.
+cat /proc/swaps : Display swap files.
+cat /proc/version : Display kernel version.
+clock -w : Save date changes to BIOS.
+crontab : Maintain crontab files for individual users.
+date 041217002007.00 : Set date and time (MMDDhhmmYYYY.ss).
+dmesg : Print or control the kernel ring buffer.
+dmidecode : Display hardware components (via SMBIOS/DMI).
+env : Run a program in a modified environment.
+export : Set an environment variable.
+fdisk : Manipulate disk partition table.
+fdisk -l : List partition tables for all disks.
+fsck : Check and repair a Linux filesystem.
+groupadd : Create a new group.
+groupdel : Delete a group.
+groupmod -n moon sun : Rename a group from 'sun' to 'moon'.
+grpck : Check the integrity of group files (/etc/group).
+halt : Stop the system.
+hdparm -i /dev/hda : Display hard disk characteristics.
+hdparm -tT /dev/sda : Perform a hard disk read speed test.
+hostname : Show or set the system's host name.
+hostnamectl : Control the system hostname.
+id : Display user and group IDs.
+init 0 : Power off the system (runlevel change).
+init 6 : Reboot the system (runlevel change).
+iptables -t filter -A FORWARD -p tcp --dport pop3 -j ACCEPT : Allow POP3 connections in the forward chain.
+iptables -t filter -A INPUT -j LOG --log-prefix "Logging on input chain" : Log events in the input chain.
+iptables -t filter -A INPUT -p tcp --dport telnet -j ACCEPT : Allow incoming telnet connections.
+iptables -t filter -A OUTPUT -p tcp --dport http -j DROP : Block outgoing HTTP connections.
+iptables -t filter -F : Flush all rules from the filter table.
+iptables -t filter -X : Delete all user-created chains in the filter table.
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE : Configure masquerading (PAT) on the eth0 interface.
+iptables -t nat -A PREROUTING -d 192.168.0.1 -p tcp -m tcp --dport 22 -j DNAT --to-destination 10.0.0.2:22 : Forward incoming SSH to another host.
+iptables -t nat -F : Flush all rules from the NAT table.
+iptables -t nat -L : List all chains and rules in the NAT table.
+journalctl : Query the systemd journal logs.
+journalctl -f : Follow system logs in real time.
+journalctl -xe : Show detailed system logs (useful for debugging errors).
+kill -1 process_id : Force a process to reload its configuration.
+last : Show recent logins and system reboots.
+last reboot : Show reboot history.
+lastb : Show failed login attempts.
+ldd /usr/bin/ssh : Display shared libraries required by the ssh binary.
+loginctl : Inspect and control login sessions.
+ls /tmp | pr -T5W$COLUMNS : Format command output into 5 columns.
+lsblk : List information about all available block devices.
+lsmod : Display loaded kernel modules.
+lspci -tv : Display PCI devices in a tree view.
+lsusb -tv : Display USB devices in a tree view.
+mkbootdisk --device /dev/fd0 "uname -r" : Create a boot floppy for the running kernel.
+mkfs : Build a Linux filesystem.
+mkswap /dev/hda3 : Create a swap area.
+mount : Mount a filesystem.
+mount /dev/cdrom /mnt/cdrom : Mount a CD/DVD-ROM.
+mount /dev/fd0 /mnt/floppy : Mount a floppy disk.
+mount /dev/hdc /mnt/cdrecorder : Mount a CD-RW/DVD-ROM.
+mount /dev/sda1 /mnt/usbdisk : Mount a USB flash drive.
+mount -o loop file.iso /mnt/cdrom : Mount an ISO image file.
+mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share : Mount a Windows network share.
+mount -t vfat /dev/hda5 /mnt/hda5 : Mount a Windows FAT32 partition.
+nbtscan ip_addr : Resolve NetBIOS name on a given IP.
+nmblookup -A ip_addr : Lookup NetBIOS name information for a host.
+passwd : Change user password.
+passwd username : Change the password for a specific user (requires root).
+poweroff : Power off the system.
+printenv : Print all or part of environment variables.
+reboot : Reboot the system.
+rsync -rogpav --delete /home /tmp : Synchronize directories and delete removed files from destination.
+rsync -rogpav -e ssh --delete /home ip_address:/tmp : Synchronize directories via SSH and delete removed files from destination.
+rsync -az -e ssh --delete ip_addr:/home/public /home/local/ : Sync remote to local with SSH and compression.
+rsync -az -e ssh --delete /home/local ip_addr:/home/public : Sync local to remote with SSH and compression.
+script : Record terminal session.
+service : Run a System V init script.
+shutdown : Bring the system down.
+shutdown -h 02:17 : Schedule system shutdown at a specific time.
+shutdown -r now : Reboot the system immediately.
+shutdown now : Shutdown the system immediately.
+shutdown -c : Cancel a scheduled shutdown.
+smartctl -A /dev/hda : Monitor hard drive reliability via SMART attributes.
+smartctl -i /dev/hda : Check if SMART is enabled on the hard drive.
 sudo : Execute a command as another user (usually root).
-su : Change user ID or become superuser.
+swapoff : Disable devices and files for paging and swapping.
+swapon : Enable devices and files for paging and swapping.
+swapon /dev/hda2 /dev/hdb3 : Enable multiple swap partitions.
+sync : Flush filesystem buffers.
+systemctl : Control the systemd system and service manager.
+systemctl enable : Enable a service to start automatically at boot.
+systemctl restart : Restart a service.
+systemctl start : Start a service.
+systemctl status : Check the status of a service.
+systemctl stop : Stop a service.
+systemd-analyze : Analyze system boot performance.
+tail /var/log/messages : Show recent system log events.
+telinit 0 : Power off the system using telinit.
+timedatectl : Control the system time and date.
+uname : Print system information.
+uname -a : Print all system information (kernel, architecture, hostname).
+uname -m : Display machine architecture.
+unalias : Remove an alias.
+uptime : Tell how long the system has been running.
 useradd : Create a new user account.
 useradd -m : Create a new user with a home directory.
 userdel : Delete a user account.
 userdel -r : Delete a user account and their home directory.
 usermod : Modify a user account.
-groupadd : Create a new group.
-groupdel : Delete a group.
-passwd : Change user password.
-passwd username : Change the password for a specific user (requires root).
-chage : Change password aging and expiration.
-shutdown : Bring the system down.
-shutdown now : Shutdown the system immediately.
-shutdown -r now : Reboot the system immediately.
-reboot : Reboot the system.
-halt : Stop the system.
-poweroff : Power off the system.
-sync : Flush filesystem buffers.
-uptime : Tell how long the system has been running.
-dmesg : Print or control the kernel ring buffer.
-journalctl : Query the systemd journal logs.
-journalctl -xe : Show detailed system logs (useful for debugging errors).
-journalctl -f : Follow system logs in real time.
-systemctl : Control the systemd system and service manager.
-systemctl start : Start a service.
-systemctl stop : Stop a service.
-systemctl restart : Restart a service.
-systemctl status : Check the status of a service.
-systemctl enable : Enable a service to start automatically at boot.
-systemd-analyze : Analyze system boot performance.
-service : Run a System V init script.
-uname : Print system information.
-uname -a : Print all system information (kernel, architecture, hostname).
-hostname : Show or set the system's host name.
-hostnamectl : Control the system hostname.
-timedatectl : Control the system time and date.
-loginctl : Inspect and control login sessions.
-alias : Create an alias for a command.
-unalias : Remove an alias.
-export : Set an environment variable.
-env : Run a program in a modified environment.
-printenv : Print all or part of environment variables.
-lsof : List open files and the processes using them.
-lsof -i : List open network connections.
-mount : Mount a filesystem.
-umount : Unmount a filesystem.
-lsblk : List information about all available block devices.
-blkid : Locate/print block device attributes (UUID).
-fdisk : Manipulate disk partition table.
-fdisk -l : List partition tables for all disks.
-parted : A partition manipulation program.
-partx : Inform kernel about partition table changes.
-mkfs : Build a Linux filesystem.
-fsck : Check and repair a Linux filesystem.
-swapoff : Disable devices and files for paging and swapping.
-swapon : Enable devices and files for paging and swapping.
-crontab : Maintain crontab files for individual users.
-at : Queue, examine or delete jobs for later execution.
 visudo : Safely edit the sudoers file.
-who : List logged-in users.
 w : Show who is logged in and what they are doing.
-whoami : Show the current logged-in username.
-id : Display user and group IDs.
-last : Show recent logins and system reboots.
-lastb : Show failed login attempts.
-ac : Display user login accounting.
 wall : Send a message to all logged-in users.
-script : Record terminal session.
+watch -n1 "cat /proc/interrupts" : Monitor hardware interrupts in real time.
+who : List logged-in users.
+who -a : Display current users, system boot time, and dead processes.
+whoami : Show the current logged-in username.
 
 # Process Management
-ps : Report a snapshot of the current processes.
-ps aux : Show all running processes with detailed info.
-top : Display Linux processes (dynamic real-time view).
+bg : Move a job to the background.
+cgexec : Run a command in a specific control group.
+fg : Move a job to the foreground.
+free : Display amount of free and used memory in the system.
+free -h : Display memory usage in human-readable units.
+glances : Monitor system performance in real time (rich UI).
 htop : Interactive process viewer.
+iostat : Report CPU and I/O statistics.
+jobs : List active jobs.
 kill : Terminate a process by PID.
 kill -9 : Forcefully kill a process (SIGKILL).
 killall : Kill processes by name.
-pkill : Signal processes based on name and other attributes.
-pgrep : Look up or signal processes based on name.
-nice : Run a program with modified scheduling priority.
-renice : Alter priority of running processes.
-bg : Move a job to the background.
-fg : Move a job to the foreground.
-jobs : List active jobs.
-nohup : Run a command immune to hangups.
-watch : Execute a program periodically.
-strace : Trace system calls and signals.
 ltrace : A library call tracer.
-vmstat : Report virtual memory statistics.
-iostat : Report CPU and I/O statistics.
-free : Display amount of free and used memory in the system.
-free -h : Display memory usage in human-readable units.
-pmap : Report memory map of a process.
-pstree : Display processes in a tree hierarchy.
-sar : Collect and report system activity.
-glances : Monitor system performance in real time (rich UI).
-nmon : Interactive tool for monitoring CPU, memory, disk, and network.
-pidstat : Monitor per-process resource usage.
 mpstat : Report CPU usage per processor or core.
-cgexec : Run a command in a specific control group.
+nice : Run a program with modified scheduling priority.
+nmon : Interactive tool for monitoring CPU, memory, disk, and network.
+nohup : Run a command immune to hangups.
+pidstat : Monitor per-process resource usage.
+pgrep : Look up or signal processes based on name.
+pkill : Signal processes based on name and other attributes.
+pmap : Report memory map of a process.
+ps : Report a snapshot of the current processes.
+ps aux : Show all running processes with detailed info.
+pstree : Display processes in a tree hierarchy.
+renice : Alter priority of running processes.
+sar : Collect and report system activity.
+strace : Trace system calls and signals.
+strace -f -e open /dev/null : Trace library calls related to open() system calls.
+top : Display Linux processes (dynamic real-time view).
+vmstat : Report virtual memory statistics.
+watch : Execute a program periodically.
 
 # Networking
 ping : Send ICMP ECHO_REQUEST to network hosts.
@@ -260,6 +360,10 @@ bmon : Bandwidth monitor with graphical statistics.
 iperf : Measure network bandwidth and performance between hosts.
 speedtest-cli : Test internet speed from the terminal.
 python3 : Quickly start a local HTTP server.
+nbtscan ip_addr : Resolve NetBIOS name on a given IP.
+nmblookup -A ip_addr : Lookup NetBIOS name information for a host.
+smbclient -L ip_addr/hostname : View remote Windows shares.
+smbget -Rr smb://ip_addr/share : Download files from a Windows/Samba share recursively.
 
 # Security & Kali Linux Essentials
 nmap : Network exploration tool and security / port scanner.
@@ -330,10 +434,43 @@ emacs : GNU Emacs editor.
 apt : Install packages on Debian/Ubuntu.
 apt-get : Low-level package management.
 apt-cache : Search for packages.
+apt-cdrom install [package] : Install or upgrade a Debian package from CD-ROM.
 yum : Package manager for RHEL/CentOS.
 dnf : Modern replacement for yum (Fedora).
 rpm : Manage RPM packages.
 dpkg : Manage .deb packages.
+dpkg-query -W -f='${Installed-Size;10}\t${Package}\n' | sort -k1,1n : Show space used by installed deb packages sorted by size.
+rpm -ivh --nodeeps [package.rpm] : Install an RPM package ignoring dependency checks.
+rpm -U [package.rpm] : Upgrade an RPM package without changing config files.
+rpm -F [package.rpm] : Upgrade an RPM package only if it is already installed.
+rpm -qa | grep httpd : List installed RPM packages containing 'httpd' in their name.
+rpm -qi [package] : Get information about a specific installed package.
+rpm -qg "System Environment/Daemons" : List RPM packages from a specific software group.
+rpm -ql [package] : List files provided by an installed package.
+rpm -qc [package] : List configuration files provided by an installed package.
+rpm -q [package] --whatrequires : List packages that require a specific RPM package.
+rpm -q [package] --whatprovides : Show the capability provided by an RPM package.
+rpm -q [package] --scripts : Show scripts executed during installation or removal.
+rpm -q [package] --changelog : Show revision history for an RPM package.
+rpm -qf /etc/httpd/conf/httpd.conf : Check which RPM package a file belongs to.
+rpm -qp [package.rpm] : List files in an RPM package that is not yet installed.
+rpm --import /media/cdrom/RPM-GPG-KEY : Import public GPG key for RPM digital signatures.
+rpm --checksig [package.rpm] : Verify the integrity of an RPM file.
+rpm -qa gpg-pubkey : Verify integrity of all installed RPM packages with GPG keys.
+rpm -V [package] : Check file size, permissions, type, owner, group, and modification time for a package.
+rpm -Va : Verify all installed RPM packages on the system.
+rpm -Vp [package.rpm] : Verify an RPM package that is not yet installed.
+rpm2cpio [package.rpm] | cpio --extract --make-directories *bin* : Extract an executable from an RPM package.
+rpmbuild --rebuild [package.src.rpm] : Build an RPM package from source RPM files.
+yum localinstall [package.rpm] : Install an RPM package and resolve dependencies via repositories.
+yum -y update : Update all installed RPM packages on the system.
+yum update [package] : Update a specific RPM package.
+yum search [package] : Search for an RPM package in the repository.
+yum clean packages : Clear the cache of downloaded RPM packages.
+yum clean headers : Remove header files used for dependency tracking.
+yum clean all : Remove all cached files (full clean).
+pacman -S name : Install package 'name' and all its dependencies (Arch/Manjaro).
+pacman -R name : Remove package 'name' and its files (Arch/Manjaro).
 
 # Miscellaneous & Fun
 clear : Clear the terminal screen.
@@ -345,11 +482,13 @@ expr : Evaluate expressions.
 seq : Print a sequence of numbers.
 yes : Output a string repeatedly until killed.
 echo : Display a line of text.
+echo 'wget -c www.example.com/files.iso' | at 09:00 : Schedule a download at a specific time using at.
 printf : Format and print data.
 man : An interface to the system reference manuals.
 info : Read Info documents.
 whatis : Display one-line manual page descriptions.
 apropos : Search the manual page names and descriptions.
+watch -n1 'cat /proc/interrupts' : Display interrupts in real time every second.
 exit : Cause the shell to exit.
 logout : Close a login shell.
 sl : Steam Locomotive (joke command).
@@ -361,3 +500,212 @@ lolcat : Rainbow coloring for text.
 neofetch : A command-line system information tool.
 screen : Screen manager with VT100/ANSI terminal emulation.
 tmux : Terminal multiplexer.
+wget -r www.example.com : Download an entire website recursively.
+
+# Extra Cheats
+arch : Display machine architecture.
+cat /proc/cpuinfo : Display CPU information.
+cat /proc/interrupts : Display I/O interrupts.
+cat /proc/meminfo : Check memory usage.
+cat /proc/swaps : Display swap files.
+cat /proc/version : Display kernel version.
+cat /proc/net/dev : Display network adapters and statistics.
+cat /proc/mounts : Show mounted file systems.
+clock -w : Save date changes to BIOS.
+date 041217002007.00 : Set date and time (MMDDhhmmYYYY.ss).
+dmidecode : Display hardware components (SMBIOS / DMI).
+hdparm -i /dev/hda : Display hard disk characteristics.
+hdparm -tT /dev/sda : Perform a hard disk read test.
+lspci -tv : Display PCI devices in a tree view.
+lsusb -tv : Display USB devices in a tree view.
+uname -m : Display machine architecture.
+init 0 : Power off the system.
+init 6 : Reboot the system.
+shutdown -h 02:17 : Schedule system shutdown at a specific time.
+shutdown -c : Cancel a scheduled shutdown.
+telinit 0 : Power off the system.
+cd ~user1 : Go to user1's home directory.
+cp dir/* . : Copy all files from a directory to the current working directory.
+cp -a /tmp/dir1 . : Copy a directory to the current working directory preserving attributes.
+cp -a dir1 dir2 : Copy directory dir1 to dir2.
+iconv -l : List known character encodings.
+iconv -f fromEncoding -t toEncoding inputFile > outputFile : Convert file encoding from one format to another.
+ls [0-9]* : List files and directories starting with numbers.
+lstree : Display files and directories in a tree format starting from root.
+mkdir dir1 dir2 : Create two directories simultaneously.
+touch -t 0712250000 file1 : Modify the timestamp of a file or directory.
+find / -name file1 : Search for a file/directory named file1 starting from root.
+find / -user user1 : Find files/directories belonging to user1.
+find /home/user1 -name *.bin : Find files with .bin extension in /home/user1.
+find /usr/bin -type f -atime +100 : Find executable files not used in the last 100 days.
+find /usr/bin -type f -mtime -10 : Find files created or modified in the last 10 days.
+find / -name .rpm -exec chmod 755 '{}' \; : Find .rpm files and change their permissions.
+find / -xdev -name .rpm : Find .rpm files ignoring removable devices.
+locate *.ps : Search for files with .ps extension.
+mount /dev/fd0 /mnt/floppy : Mount a floppy disk.
+mount /dev/cdrom /mnt/cdrom : Mount a CD/DVD-ROM.
+mount /dev/hdc /mnt/cdrecorder : Mount a CD-RW/DVD-ROM.
+mount -o loop file.iso /mnt/cdrom : Mount an ISO file.
+mount -t vfat /dev/hda5 /mnt/hda5 : Mount a Windows FAT32 partition.
+mount /dev/sda1 /mnt/usbdisk : Mount a USB flash drive.
+mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share : Mount a Windows network share.
+umount -n /mnt/hda2 : Unmount a file system without writing to /etc/mtab.
+dpkg-query -W -f='${Installed-Size;10}\t${Package}\n' | sort -k1,1n : Show space used by installed deb packages sorted by size.
+du -sk * | sort -rn : Show size of files and directories sorted by size.
+rpm -qa --qf '%10{SIZE}\t%{NAME}\n' | sort -k1,1n : Show space used by installed rpm packages sorted by size.
+groupmod -n moon sun : Rename group from 'sun' to 'moon'.
+grpck : Check the integrity of group files (/etc/group).
+newgrp - [group] : Log in to a new group to change the default group for newly created files.
+pwck : Check the integrity of user files (/etc/passwd).
+chmod go-rwx directory1 : Remove read, write, and execute permissions for group and others.
+chmod u+s /bin/file1 : Set SUID bit on a binary file.
+chmod u-s /bin/file1 : Disable SUID bit on a binary file.
+chmod g+s /home/public : Set SGID bit on a directory.
+chmod g-s /home/public : Disable SGID bit on a directory.
+chmod o+t /home/public : Set sticky bit on a directory.
+chmod o-t /home/public : Disable sticky bit on a directory.
+find / -perm -u+s : List all files with SUID bit set.
+ls /tmp | pr -T5W$COLUMNS : Format command output into 5 columns.
+chattr +a file1 : Allow only appending to a file.
+chattr +c file1 : Enable automatic compression/decompression by the kernel.
+chattr +d file1 : Ensure the dump program ignores the file during backup.
+chattr +s file1 : Allow a file to be deleted securely.
+chattr +S file1 : Ensure modifications are written synchronously.
+chattr +u file1 : Allow recovering file content if closed.
+gzip -9 file1 : Compress a file with maximum compression.
+rar a file1.rar test_file : Create a new RAR archive named file1.rar.
+rar a file1.rar file1 file2 dir1 : Compress multiple files and directories into a RAR archive.
+rar x file1.rar : Extract RAR files.
+tar -tf archive.tar : View contents of a tar archive.
+tar -cvfj archive.tar.bz2 dir1 : Create a bzip2 compressed tar archive.
+tar -xvfj archive.tar.bz2 : Extract a bzip2 compressed tar archive.
+unrar x file1.rar : Extract RAR files.
+rpm -ivh --nodeeps [package.rpm] : Install an RPM package ignoring dependencies.
+rpm -U [package.rpm] : Upgrade an RPM package without changing config files.
+rpm -F [package.rpm] : Upgrade an RPM package only if it is already installed.
+rpm -qa | grep httpd : List installed RPM packages containing 'httpd'.
+rpm -qi [package] : Get information about a specific installed package.
+rpm -qg "System Environment/Daemons" : List RPM packages from a specific software group.
+rpm -ql [package] : List files provided by an installed package.
+rpm -qc [package] : List configuration files provided by an installed package.
+rpm -q [package] --whatrequires : List packages that require a specific RPM package.
+rpm -q [package] --whatprovides : Show the capability of an RPM package.
+rpm -q [package] --scripts : Show scripts executed during installation or removal.
+rpm -q [package] --changelog : Show revision history for an RPM package.
+rpm -qf /etc/httpd/conf/httpd.conf : Check which RPM package a file belongs to.
+rpm -qp [package.rpm] : List files in an RPM package that is not yet installed.
+rpm --import /media/cdrom/RPM-GPG-KEY : Import public GPG key for digital signatures.
+rpm --checksig [package.rpm] : Verify the integrity of an RPM file.
+rpm -qa gpg-pubkey : Verify integrity of all installed RPM packages.
+rpm -V [package] : Check file size, permissions, type, owner, group, and modification time.
+rpm -Va : Verify all installed RPM packages on the system.
+rpm -Vp [package.rpm] : Verify an RPM package not yet installed.
+rpm2cpio [package.rpm] | cpio --extract --make-directories *bin* : Extract an executable from an RPM package.
+rpmbuild --rebuild [package.src.rpm] : Build an RPM package from source RPM files.
+yum localinstall [package.rpm] : Install an RPM package and resolve dependencies via repositories.
+yum -y update : Update all installed RPM packages on the system.
+yum update [package] : Update a specific RPM package.
+yum search [package] : Search for an RPM package in the repository.
+yum clean packages : Clear the cache of downloaded RPM packages.
+yum clean headers : Remove header files used for dependency tracking.
+yum clean all : Remove all cached files (cache).
+apt-cdrom install [package] : Install or upgrade a Debian package from CD-ROM.
+pacman -S name : Install package 'name' and all its dependencies.
+pacman -R name : Remove package 'name' and all its files.
+cat example.txt | awk 'NR % 2 == 1' : Remove all even lines from a file.
+echo a b c | awk '{print $1,$3}' : Display the first and third columns of a line.
+cat -n file1 : Number the lines in a specific file.
+comm -1 file1 file2 : Compare files and suppress lines unique to file1.
+comm -2 file1 file2 : Compare files and suppress lines unique to file2.
+comm -3 file1 file2 : Compare files and suppress lines that appear in both files.
+paste -d '+' file1 file2 : Merge files into columns separated by '+'.
+sdiff file1 file2 : Interactively find differences and merge files.
+sed '/^$/d' example.txt : Delete all empty lines from a file.
+sed '/^#/d; /^$/d' example.txt : Delete comments and empty lines from a file.
+sed -e '1d' example.txt : Remove the first line from a file.
+sed -n '/string1/p' : Display lines containing a specific string.
+sed -e 's/ *$//' example.txt : Remove trailing whitespace from each line.
+sed -e 's/string1//g' example.txt : Remove a specific string from text.
+sed -n '1,5p' example.txt : Print lines 1 to 5 from a file.
+sed -n '5p;5q' example.txt : Display line 5 of a file.
+sed -e 's/00/0/g' example.txt : Replace multiple zeros with a single zero.
+sort file1 file2 | uniq : Sort and remove duplicate lines from two files.
+sort file1 file2 | uniq -u : Sort and display only unique lines from two files.
+sort file1 file2 | uniq -d : Sort and display only duplicate lines from two files.
+dos2unix filedos.txt fileunix.txt : Convert a text file from MSDOS to Unix format.
+recode ..HTML < page.txt > page.html : Convert a text file to HTML format.
+recode -l | more : List all available conversion formats.
+unix2dos fileunix.txt filedos.txt : Convert a text file from Unix to MSDOS format.
+badblocks -v /dev/hda1 : Check for bad blocks on a disk.
+dosfsck /dev/hda1 : Check/repair integrity of a DOS file system on a disk.
+e2fsck /dev/hda1 : Check/repair integrity of an ext2 file system on a disk.
+e2fsck -j /dev/hda1 : Check/repair integrity of an ext3 file system on a disk.
+fsck.ext2 /dev/hda1 : Check/repair integrity of an ext2 file system on a disk.
+fsck.ext3 /dev/hda1 : Check/repair integrity of an ext3 file system on a disk.
+fsck.vfat /dev/hda1 : Check/repair integrity of a FAT file system on a disk.
+fsck.msdos /dev/hda1 : Check/repair integrity of a DOS file system on a disk.
+fdformat -n /dev/fd0 : Format a floppy disk.
+mke2fs /dev/hda1 : Create an ext2 file system on a specific partition.
+mke2fs -j /dev/hda1 : Create an ext3 file system on a specific partition.
+mkfs -t vfat 32 /dev/hda1 : Create a FAT32 file system.
+mkswap /dev/hda3 : Create a swap area.
+swapon /dev/hda2 /dev/hdb3 : Enable swap partitions.
+find /var/log -name '.log' | tar cv --files-from=- | bzip2 > log.tar.bz2 : Find all .log files and create a bzip2 archive.
+find /home/user1 -name '*.txt' | xargs cp -av --target-directory=/home/backup/ --parents : Find and copy all .txt files to another directory preserving structure.
+dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr 'dd of=hda.gz' : Backup local hard drive to a remote computer via SSH.
+dd if=/dev/sda of=/tmp/file1 : Copy hard drive content to a specific file.
+dd if=/dev/hda of=/dev/fd0 bs=512 count=1 : Create a backup of the Master Boot Record (MBR) to a floppy.
+dd if=/dev/fd0 of=/dev/hda bs=512 count=1 : Restore MBR from a previous backup.
+dump -0aj -f /tmp/home0.bak /home : Create a full backup of the /home directory.
+dump -1aj -f /tmp/home0.bak /home : Create an incremental backup of the /home directory.
+restore -if /tmp/home0.bak : Interactively restore a backup.
+rsync -rogpav --delete /home /tmp : Synchronize directories.
+rsync -rogpav -e ssh --delete /home ip_address:/tmp : Synchronize directories via SSH.
+rsync -az -e ssh --delete ip_addr:/home/public /home/local/ : Sync remote to local with SSH and compression.
+rsync -az -e ssh --delete /home/local ip_addr:/home/public : Sync local to remote with SSH and compression.
+tar -Puf backup.tar /home/user : Perform an incremental backup.
+(cd /tmp/local/ && tar c .) | ssh -C user@ip_addr 'cd /home/share/ && tar x -p' : Copy directory content to a remote directory via SSH.
+(tar c /home) | ssh -C user@ip_addr 'cd /home/backup-home && tar x -' : Copy local directory to remote via SSH.
+tar cf - . | (cd /tmp/backup; tar xf - ) : Copy directory preserving permissions and links.
+cd-paranoia -B : Extract audio tracks from CD to WAV files.
+cd-paranoia -- : Rip first three tracks from CD to WAV format.
+cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast force : Erase a rewritable CD.
+cdrecord -v dev=/dev/cdrom cd.iso : Burn an ISO image to CD.
+gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom - : Burn a compressed ISO image.
+cdrecord -scanbus : Scan bus to identify SCSI channels.
+dd if=/dev/hdc | md5sum : Check a device (like CD) with MD5 checksum.
+mkisofs /dev/cdrom > cd.iso : Create an ISO image of a CD.
+mkisofs /dev/cdrom | gzip > cd_iso.gz : Create a compressed ISO image of a CD.
+mkisofs -J -allow-leading-dots : Create an ISO image for a specific directory.
+nbtscan ip_addr : Resolve NetBIOS name.
+nmblookup -A ip_addr : Lookup NetBIOS name.
+smbclient -L ip_addr/hostname : View remote Windows shares.
+smbget -Rr smb://ip_addr/share : Download files from Windows/Samba share.
+iptables -t nat -L : List all chains in the NAT table.
+iptables -t filter -F : Flush all rules from the filter table.
+iptables -t nat -F : Flush all rules from the NAT table.
+iptables -t filter -X : Delete all user-created chains in filter table.
+iptables -t filter -A INPUT -p tcp --dport telnet -j ACCEPT : Allow incoming telnet connections.
+iptables -t filter -A OUTPUT -p tcp --dport http -j DROP : Block outgoing HTTP connections.
+iptables -t filter -A FORWARD -p tcp --dport pop3 -j ACCEPT : Allow POP3 connections in the forward chain.
+iptables -t filter -A INPUT -j LOG --log-prefix "Logging on input chain" : Log events in the input chain.
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE : Configure PAT on eth0 interface.
+iptables -t nat -A PREROUTING -d 192.168.0.1 -p tcp -m tcp --dport 22 -j DNAT --to-destination 10.0.0.2:22 : Port forwarding (SSH) from one host to another.
+kill -1 process_id : Force a process to reload its configuration.
+last reboot : Show reboot history.
+lsmod : Display loaded kernel modules.
+lsof /home/user1 : List open files in a specific path.
+ps eafw : Display Linux tasks.
+ps -e -o pid,args --forest : Display tasks in a hierarchical tree.
+smartctl -A /dev/hda : Monitor hard drive reliability via SMART.
+smartctl -i /dev/hda : Check if SMART is enabled on the hard drive.
+strace -f -e open /dev/null : Trace library calls.
+tail /var/log/messages : Show system log events.
+watch -n1 'cat /proc/interrupts' : Display interrupts in real-time.
+chsh : Change shell command.
+chsh -l : List available shells.
+ldd /usr/bin/ssh : Display shared libraries required by ssh.
+mkbootdisk --device /dev/fd0 'uname -r' : Create a boot floppy.
+wget -r www.example.com : Download an entire website.
+echo 'wget -c www.example.com/files.iso' | at 09:00 : Schedule a download at a specific time.
+who -a : Display current users with system boot time and dead processes.
