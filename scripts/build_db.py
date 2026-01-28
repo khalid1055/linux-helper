@@ -1,3 +1,5 @@
+"""Updated in v2.0.0 to support 600+ commands and improved deduplication logic."""
+
 from __future__ import annotations
 
 from pathlib import Path

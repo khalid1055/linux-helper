@@ -10,8 +10,8 @@ ROOT = Path(__file__).parent
 
 setup(
     name="linux-helper",
-    version="0.1.0",
-    description="Natural language to Linux command helper (lh).",
+    version="2.0.0",
+    description="Natural language to Linux command helper (lh) with 692 command lines and 593 unique commands.",
     author="linux-helper",
     package_dir={"": "src"},
     packages=find_packages("src"),
